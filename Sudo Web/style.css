@@ -1,0 +1,182 @@
+Stlye.css
+/* ============================================
+   CSS VARIABLES (Custom Properties)
+   These make it easy to change colors globally
+   ============================================ */
+:root {
+    --primary-orange: #F5A623;    /* Main brand color from logo */
+    --deep-brown: #2C1810;        /* Dark background color */
+    --cream: #FDF8F3;             /* Light background color */
+    --accent-gold: #D4AF37;       /* Additional gold accent */
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+body {
+    font-family: 'Inter', sans-serif;  /* Default readable font */
+    background-color: var(--cream);
+    overflow-x: hidden;                 /* Prevent horizontal scroll */
+}
+
+/* Custom font classes */
+.font-display {
+    font-family: 'Playfair Display', serif;  /* Elegant headings */
+}
+
+.font-script {
+    font-family: 'Dancing Script', cursive;  /* Logo-style script */
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   Customizes the browser scrollbar
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-orange);
+    border-radius: 4px;
+}
+
+/* ============================================
+   NOISE OVERLAY
+   Adds film grain texture to entire page
+   ============================================ */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;  /* Lets clicks pass through */
+    opacity: 0.03;         /* Very subtle */
+    z-index: 9999;         /* Always on top */
+    /* SVG noise pattern */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   CUSTOM CURSOR
+   Two-part cursor that follows mouse
+   ============================================ */
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: var(--primary-orange);
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--primary-orange);
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* ============================================
+   HERO GRADIENT
+   Dark overlay for hero image
+   ============================================ */
+.hero-gradient {
+    background: linear-gradient(
+        135deg, 
+        rgba(44,24,16,0.95) 0%,      /* Dark brown */
+        rgba(44,24,16,0.7) 50%,      /* Semi-transparent */
+        rgba(245,166,35,0.3) 100%    /* Orange tint */
+    );
+}
+
+/* ============================================
+   AFRICAN PATTERN BACKGROUND
+   Subtle geometric pattern
+   ============================================ */
+.african-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F5A623' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ============================================
+   GRADIENT TEXT
+   Text with orange-to-brown gradient
+   ============================================ */
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-orange) 0%, var(--deep-brown) 100%);
+    -webkit-background-clip: text;    /* Clips background to text shape */
+    -webkit-text-fill-color: transparent; /* Makes text transparent to show bg */
+    background-clip: text;
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   Elevates cards on mouse hover
+   ============================================ */
+.card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-10px);                    /* Moves up */
+    box-shadow: 0 20px 40px rgba(245,166,35,0.2);   /* Orange glow */
+}
+
+/* ============================================
+   IMAGE REVEAL ANIMATION
+   Slides mask away to reveal image
+   ============================================ */
+.image-reveal {
+    clip-path: inset(0 100% 0 0);    /* Starts fully hidden (right side) */
+    transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.image-reveal.active {
+    clip-path: inset(0 0 0 0);       /* Fully revealed */
+}
+
+/* ============================================
+   MAGNETIC BUTTON
+   Class for buttons with magnetic hover effect
+   ============================================ */
+.magnetic-btn {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ============================================
+   UTILITY ANIMATIONS
+   ============================================ */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out;
+}
